@@ -3,7 +3,7 @@
 # Inspiration taken from https://github.com/frol/docker-alpine-oraclejdk8
 # Leverages GLIBC packaged for Alpine by Andy Shinn (https://github.com/andyshinn/alpine-pkg-glibc)
 
-FROM docker4j/base:latest
+FROM docker4j/base-glibc:latest
 
 MAINTAINER Jacob Blain Christen <jacob@blainchristen.net>
 
