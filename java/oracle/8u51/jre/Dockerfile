@@ -3,7 +3,7 @@
 # Inspiration taken from https://github.com/frol/docker-alpine-oraclejdk8
 # Leverages GLIBC packaged for Alpine by Andy Shinn (https://github.com/andyshinn/alpine-pkg-glibc)
 
-FROM docker4j/base-glibc:latest
+FROM docker4j/base:latest
 
 MAINTAINER Jacob Blain Christen <jacob@blainchristen.net>
 
@@ -20,7 +20,8 @@ RUN set -x \
     -H "Cookie: oraclelicense=accept-securebackup-cookie" \
     "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/server-jre-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" \
  && tar --no-same-permissions -xz --strip=1 -C ${JAVA_HOME} -f /tmp/server-jre-* \
- && ln -vs ${JAVA_HOME}/bin/* /usr/bin/ \
  && rm -vfr /tmp/* /var/cache/apk/*
+
+ENV PATH="${JAVA_HOME}/bin:$PATH"
 
 CMD ["java", "-version"]

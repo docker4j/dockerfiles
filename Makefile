@@ -1,14 +1,11 @@
 NAMESPACE=docker4j
 
-all: base base-glibc java
+all: base java
 
 base:
 	docker build -t $(NAMESPACE)/$@ -f $@/Dockerfile $@
 
-base-glibc: base
-	docker build -t $(NAMESPACE)/$@ -f $@/Dockerfile $@
-
-java: base-glibc
+java: base
 	make -C $@
 
-.PHONY: all base base-glibc java
+.PHONY: all base java
